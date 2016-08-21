@@ -5,6 +5,7 @@
 
 #include <memory>
 #include <SFML/System.hpp>
+#include "../Creep/CreepDebuffComponent.hpp"
 
 class Creep;
 
@@ -29,16 +30,18 @@ private:
 	float timeToHit_;
 	std::weak_ptr<Creep> target_;
 	int32_t damage_;
+	CreepDebuffComponent debuffComponent_;
 
 public:
 	BulletTimedMovementComponent(
 		float time,
 		const std::shared_ptr<Creep> & target,
 		int32_t damage,
-		sf::Vector2f startingPosition);
+		sf::Vector2f startingPosition,
+	CreepDebuffComponent &debuffComponent);
 	void update(sf::Time dt) override;
 	virtual sf::Vector2f getPosition() const override;
 	virtual bool isAlive() const override;
 };
 
-#endif // TDF_BULLET_MOVEMENT_COMPONENT_HPP
+    #endif // TDF_BULLET_MOVEMENT_COMPONENT_HPP

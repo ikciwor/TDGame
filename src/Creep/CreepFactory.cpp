@@ -4,6 +4,7 @@
 #include "Creep.hpp"
 #include "CreepFactory.hpp"
 #include "CreepLifeDisplayComponent.hpp"
+#include "CreepDebuffComponent.hpp"
 
 std::shared_ptr<Creep> CreepFactory::createCreep(
 	const std::string & typeName,
@@ -17,7 +18,6 @@ std::shared_ptr<Creep> CreepFactory::createCreep(
 		auto lifeDisplay = std::make_unique<CreepLifeDisplayComponent>(
 			sf::Vector2f(0.f, 0.5f), sf::Vector2f(0.8f, 0.2f), true);
 		auto lifeDisplayDirect = lifeDisplay.get();
-
 		auto compositeDisplay = std::make_unique<CreepCompositeDisplayComponent>();
 		compositeDisplay->addChild(std::move(dotDisplay));
 		compositeDisplay->addChild(std::move(lifeDisplay));

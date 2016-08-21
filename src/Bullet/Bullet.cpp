@@ -6,3 +6,5 @@ Bullet::Bullet(
 	: movementComponent_(std::move(movementComponent))
 	, displayComponent_(std::move(displayComponent))
 {}
+
+

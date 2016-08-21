@@ -10,6 +10,7 @@
 #include "../Renderable.hpp"
 #include "BulletDisplayComponent.hpp"
 #include "BulletMovementComponent.hpp"
+#include "../Creep/CreepDebuffComponent.hpp"
 
 //! Represents a Bullet shot from a Tower.
 class Bullet : public Renderable
@@ -21,7 +22,8 @@ private:
 public:
 	Bullet(
 		std::unique_ptr<BulletMovementComponent> movementComponent,
-		std::unique_ptr<BulletDisplayComponent> displayComponent);
+		std::unique_ptr<BulletDisplayComponent> displayComponent
+         );
 
 	inline void update(sf::Time dt)
 	{

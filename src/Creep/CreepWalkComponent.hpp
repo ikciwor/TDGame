@@ -24,6 +24,7 @@ public:
 	//! Returns which Turret positions are occupied by this Creep.
 	virtual std::vector<sf::Vector2i> getOccupiedTurretPositions() const = 0;
 	virtual bool hasReachedGoal() const = 0;
+  virtual void updateSpeed(float newSpeed) = 0;
 };
 
 //! Component implementing a linear walk through the level grid.
@@ -39,6 +40,7 @@ private:
 	creepGroundPosition_t gridPosition_;
 	sf::Vector2f worldPosition_;
 	sf::Vector2f direction_;
+  float speed_;
 
 public:
 	CreepGridWalkComponent(sf::Vector2i initialPosition);
@@ -47,6 +49,7 @@ public:
 	virtual sf::Vector2f getFacingDirection() const override;
 	virtual std::vector<sf::Vector2i> getOccupiedTurretPositions() const override;
 	virtual bool hasReachedGoal() const override;
+	virtual void updateSpeed(float newSpeed) override ;
 };
 
 #endif // TDF_CREEP_WALK_COMPONENT_HPP

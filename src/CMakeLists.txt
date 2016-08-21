@@ -3,6 +3,7 @@ set(SOURCES
 	Bullet/BulletDisplayComponent.cpp
 	Bullet/BulletFactory.cpp
 	Bullet/BulletMovementComponent.cpp
+  Creep/CreepDebuffComponent.cpp
 	Creep/Creep.cpp
 	Creep/CreepDisplayComponent.cpp
 	Creep/CreepFactory.cpp
@@ -30,6 +31,7 @@ set(HEADERS
 	Bullet/BulletMovementComponent.hpp
 	Constants.hpp
 	Creep/Creep.hpp
+  Creep/CreepDebuffComponent.hpp
 	Creep/CreepDisplayComponent.hpp
 	Creep/CreepFactory.hpp
 	Creep/CreepLifeDisplayComponent.hpp

@@ -10,6 +10,7 @@
 #include "../Renderable.hpp"
 #include "CreepDisplayComponent.hpp"
 #include "CreepWalkComponent.hpp"
+#include "CreepDebuffComponent.hpp"
 
 //! \brief Represents an enemy in the level.
 //! A Creep is composed of two components: walking and display.
@@ -18,6 +19,7 @@
 class Creep : public Selectable, public Renderable
 {
 private:
+  std::vector<CreepDebuffComponent> debuffComponents_;
 	std::unique_ptr<CreepWalkComponent> walkComponent_;
 	std::unique_ptr<CreepDisplayComponent> displayComponent_;
 	int32_t life_, maxLife_;
@@ -28,8 +30,21 @@ public:
 		std::unique_ptr<CreepWalkComponent> walkComponent,
 		std::unique_ptr<CreepDisplayComponent> displayComponent);
 
+  inline void applyDebuff(CreepDebuffComponent debuffcomp){
+    debuffComponents_.push_back(debuffcomp);
+  }
+
+
 	inline void update(sf::Time dt, NavigationProvider<sf::Vector2i> & navigation)
 	{
+    int d;
+    for(auto debuff : debuffComponents_){
+      d = debuff.getType();
+      if(d == CreepDebuffComponent::SLOW){
+        std::cerr << "slowed";
+        walkComponent_->updateSpeed(0.2f);
+      }
+    }
 		walkComponent_->update(dt, navigation);
 	}
 

@@ -8,11 +8,14 @@ BulletTimedMovementComponent::BulletTimedMovementComponent(
 	float time,
 	const std::shared_ptr<Creep> & target,
 	int32_t damage,
-	sf::Vector2f startingPosition)
+	sf::Vector2f startingPosition,
+	CreepDebuffComponent &debuffComponent
+)
 	: position_(startingPosition)
 	, timeToHit_(time)
 	, target_(target)
 	, damage_(damage)
+	, debuffComponent_(debuffComponent)
 {}
 
 void BulletTimedMovementComponent::update(sf::Time dt)
@@ -29,6 +32,7 @@ void BulletTimedMovementComponent::update(sf::Time dt)
 	timeToHit_ = nextTime;
 
 	if (nextTime == 0.f) {
+		lockedTarget->applyDebuff(CreepDebuffComponent::SLOW);
 		lockedTarget->inflictDamage(damage_);
 		target_.reset();
 	}
@@ -47,3 +51,6 @@ bool BulletTimedMovementComponent::isAlive() const
 	auto lockedTarget = target_.lock();
 	return lockedTarget && lockedTarget->isAlive();
 }
+
+
+
