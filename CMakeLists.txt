@@ -21,3 +21,5 @@ include_directories(${THOR_INCLUDE_DIR})
 
 add_subdirectory(src)
 add_subdirectory(doc)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")

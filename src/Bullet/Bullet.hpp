@@ -25,7 +25,7 @@ public:
 		std::unique_ptr<BulletDisplayComponent> displayComponent
          );
 
-	inline void update(sf::Time dt)
+	inline bool update(sf::Time dt)
 	{
 		movementComponent_->update(dt);
 	}

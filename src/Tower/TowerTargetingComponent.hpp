@@ -43,7 +43,18 @@ protected:
 public:
 	TowerClosestTargetingComponent(sf::Vector2f position);
 };
+//! Chooses the Creep with the biggest max HP.
+class TowerStrongestTargetingComponent final : public TowerTargetingComponent
+{
+private:
+	sf::Vector2f position_;
 
+protected:
+	virtual std::shared_ptr<Creep> chooseCreep(CreepQueryService & service) override;
+
+public:
+	TowerStrongestTargetingComponent(sf::Vector2f position);
+};
 //! A helper targeting component which uses another component to choose a targeted
 //! Creep, then returns it until the Creep dies.
 class TowerTargetingLockOnComponent final : public TowerTargetingComponent

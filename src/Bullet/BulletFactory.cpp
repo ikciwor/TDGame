@@ -3,9 +3,11 @@
 #include "BulletDisplayComponent.hpp"
 #include "BulletMovementComponent.hpp"
 #include "../Creep/CreepDebuffComponent.hpp"
+#include "BombMovementComponent.h"
 #include "BulletFactory.hpp"
 
 #include "../Level.hpp"
+#include "../DecorationFactory.h"
 
 std::shared_ptr<Bullet> BulletFactory::innerCreateBullet(
 	const std::string & bulletName) const
@@ -15,8 +17,13 @@ std::shared_ptr<Bullet> BulletFactory::innerCreateBullet(
 		auto movement = std::make_unique<BulletTimedMovementComponent>(
 			1.f, target_, 20, position_, *debuff);
 		auto display = std::make_unique<BulletSimpleDisplayComponent>(0.0625f, *movement.get());
-return std::make_shared<Bullet>(std::move(movement), std::move(display));
+		return std::make_shared<Bullet>(std::move(movement), std::move(display));
+	} else if (bulletName == "Bomb") {
+		auto movement = std::make_unique<BombMovementComponent>(2,target_,std::make_shared<DecorationFactory>(levelInstance_), 1000000, position_);
+        auto display = std::make_unique<BulletSimpleDisplayComponent>(0.125f, *movement.get());
+		return std::make_shared<Bullet>(std::move(movement), std::move(display));
 	}
+
 
 	throw std::runtime_error("Unknown Bullet type: " + bulletName);
 }

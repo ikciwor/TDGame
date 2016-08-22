@@ -15,9 +15,10 @@ CreepSourceDecoration::CreepSourceDecoration(sf::Vector2f position)
 	rectangleShape_.setFillColor(sf::Color(255, 127, 0));
 }
 
-void CreepSourceDecoration::update(sf::Time dt)
+bool CreepSourceDecoration::update(sf::Time dt)
 {
 	rectangleShape_.rotate(dt.asSeconds() * ROTATION_SPEED);
+	return false;
 }
 
 void CreepSourceDecoration::render(sf::RenderTarget & target)
@@ -32,11 +33,12 @@ GoalDecoration::GoalDecoration(sf::Vector2f position)
 	circleShape_.setFillColor(sf::Color::Cyan);
 }
 
-void GoalDecoration::update(sf::Time dt)
+bool GoalDecoration::update(sf::Time dt)
 {
 	phase_ += dt.asSeconds() * PULSE_SPEED;
 	if (phase_ > M_PI)
 		phase_ -= 2.f * M_PI;
+	return false;
 }
 
 void GoalDecoration::render(sf::RenderTarget & target)
@@ -47,4 +49,27 @@ void GoalDecoration::render(sf::RenderTarget & target)
 	circleShape_.setRadius(radius);
 	circleShape_.setOrigin({ radius, radius });
 	target.draw(circleShape_);
+}
+
+Explosion::Explosion(sf::Vector2f position) {
+	inside.setPosition(position);
+	outside.setPosition(position);
+
+	inside.setFillColor(sf::Color::Yellow);
+	outside.setFillColor(sf::Color::Red);
+}
+
+bool Explosion::update(sf::Time dt) {
+	size+=0.1;
+	inside.setOrigin(size * 0.75, size*0.75);
+	outside.setOrigin(size, size);
+	outside.setRadius(size);
+	inside.setRadius(size*0.75f);
+
+	return size > 1;
+}
+
+void Explosion::render(sf::RenderTarget &target) {
+	target.draw(outside);
+	target.draw(inside);
 }

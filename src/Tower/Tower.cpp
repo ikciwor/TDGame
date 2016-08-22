@@ -1,7 +1,7 @@
 #include <SFGUI/Widgets.hpp>
+#include "Tower.hpp"
 #include "../Bullet/Bullet.hpp"
 #include "../Bullet/BulletFactory.hpp"
-#include "Tower.hpp"
 
 void Tower::update(sf::Time dt, BulletFactory & bulletFactory, CreepQueryService & queryService)
 {

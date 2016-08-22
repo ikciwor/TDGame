@@ -26,3 +26,11 @@ std::shared_ptr<Creep> TowerTargetingLockOnComponent::chooseCreep(CreepQueryServ
 TowerTargetingLockOnComponent::TowerTargetingLockOnComponent(std::shared_ptr<TowerTargetingComponent> base)
 	: base_(base)
 {}
+
+std::shared_ptr<Creep> TowerStrongestTargetingComponent::chooseCreep(CreepQueryService &service) {
+    return service.getStrongestCreep(position_);
+}
+
+TowerStrongestTargetingComponent::TowerStrongestTargetingComponent(sf::Vector2f position) : position_(position){
+
+}

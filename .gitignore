@@ -1,3 +1,11 @@
 build*
 *.swp
+<<<<<<< HEAD
+=======
+.idea*
+.vgcore
+.gitignore
+cmake
+bin*
+>>>>>>> a17c092... Added bomb tower
 .*

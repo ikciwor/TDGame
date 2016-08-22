@@ -29,7 +29,7 @@ Game::Game(int /*argc*/, char ** /*argv*/)
 	window_.resetGLStates();
 	window_.setFramerateLimit(60);
 	window_.setActive();
-
+	system("echo lol");
 	setNextState(std::make_unique<MenuGameState>(*this));
 }
 

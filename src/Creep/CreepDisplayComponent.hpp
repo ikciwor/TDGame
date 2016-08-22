@@ -27,7 +27,7 @@ public:
 	CreepDotDisplayComponent(const CreepWalkComponent & walkComponent, float radius);
 	virtual void render(sf::RenderTarget & target) override;
 	virtual bool isHit(sf::Vector2f point) const override;
-    virtual void update(sf::Time dt);
+    virtual bool update(sf::Time dt);
 };
 class CreepTextureDisplayComponent final : public CreepDisplayComponent
 {
@@ -47,6 +47,6 @@ public:
                                  thor::Animator<sf::Sprite,std::string>animator1);//,int x1,int y1);
     virtual void render(sf::RenderTarget & target) override;
     virtual bool isHit(sf::Vector2f point) const override;
-    virtual void update(sf::Time dt)override;
+    virtual bool update(sf::Time dt)override;
 };
 #endif // TDF_CREEP_DISPLAY_COMPONENT_HPP

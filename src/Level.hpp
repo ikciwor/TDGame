@@ -7,6 +7,7 @@
 #include <istream>
 #include <memory>
 #include <vector>
+#include <list>
 
 #include <json.hpp>
 
@@ -126,7 +127,7 @@ private:
 	std::unique_ptr<std::shared_ptr<Tower>[]> towerMap_;
 	std::vector<std::shared_ptr<Bullet>> bullets_;
 	std::vector<std::shared_ptr<Creep>> creeps_;
-	std::vector<std::shared_ptr<Decoration>> decorations_;
+	std::list<std::shared_ptr<Decoration>> decorations_;
 	std::vector<std::shared_ptr<Tower>> towers_;
 	std::vector<std::weak_ptr<Renderable>> renderables_;
 	InvasionManager invasionManager_;
@@ -200,6 +201,7 @@ public:
 		const std::string & name,
 		int32_t life, int32_t bounty,
 		sf::Vector2i position);
+    void addDecoration(std::shared_ptr<Decoration> decoration);
 	void registerBullet(std::shared_ptr<Bullet> bullet);
 
 	void update(sf::Time dt);

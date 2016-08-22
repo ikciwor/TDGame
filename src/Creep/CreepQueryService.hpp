@@ -17,8 +17,11 @@ public:
 
 	//! Returns the closest Creep to the given position, in given range.
 	virtual std::shared_ptr<Creep> getClosestCreep(
-		sf::Vector2f center,
-		float maxRange = std::numeric_limits<float>::infinity()) = 0;
+			sf::Vector2f center,
+			float maxRange = std::numeric_limits<float>::infinity()) = 0;
+	virtual std::shared_ptr<Creep> getStrongestCreep(
+			sf::Vector2f center,
+			float maxRange = std::numeric_limits<float>::infinity()) = 0;
 };
 
 //! \class CreepVectorQueryService
@@ -31,8 +34,11 @@ private:
 public:
 	CreepVectorQueryService(const std::vector<std::shared_ptr<Creep>> & creeps);
 	virtual std::shared_ptr<Creep> getClosestCreep(
-		sf::Vector2f center,
+			sf::Vector2f center,
 		float maxRange = std::numeric_limits<float>::infinity()) override;
+	virtual std::shared_ptr<Creep> getStrongestCreep(
+			sf::Vector2f center,
+			float maxRange = std::numeric_limits<float>::infinity()) override;
 };
 
 #endif // TDF_CREEP_QUERY_SERVICE_HPP

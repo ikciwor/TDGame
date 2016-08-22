@@ -14,7 +14,6 @@ class TowerDisplayComponent : public Renderable {};
 //! A simple look for the tower.
 class TowerSimpleDisplayComponent final : public TowerDisplayComponent
 {
-private:
 	sf::CircleShape baseShape_;
 	sf::RectangleShape barrelShape_;
 	TowerTargetingComponent & targetingComponent_;
@@ -25,6 +24,14 @@ public:
 	TowerSimpleDisplayComponent(
 		TowerTargetingComponent & targeting,
 		sf::Vector2f position);
+	virtual void render(sf::RenderTarget & target) override;
+};
+
+class BombardDisplayComponent final : public TowerDisplayComponent {
+	sf::CircleShape krztaut_; // wyalić przy robieniu tekstur
+	sf::Vector2f position_;
+public:
+	BombardDisplayComponent (TowerTargetingComponent &targeting, sf::Vector2f position);
 	virtual void render(sf::RenderTarget & target) override;
 };
 

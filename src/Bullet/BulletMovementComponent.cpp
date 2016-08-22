@@ -38,18 +38,16 @@ void BulletTimedMovementComponent::update(sf::Time dt)
 	}
 }
 
-sf::Vector2f BulletTimedMovementComponent::getPosition() const
-{
-	return position_;
+sf::Vector2f BulletTimedMovementComponent::getPosition() const {
+    return position_;
 }
 
-bool BulletTimedMovementComponent::isAlive() const
-{
-	if (timeToHit_ <= 0.f)
-		return false;
+bool BulletTimedMovementComponent::isAlive() const {
+    if (timeToHit_ <= 0.f)
+        return false;
 
-	auto lockedTarget = target_.lock();
-	return lockedTarget && lockedTarget->isAlive();
+    auto lockedTarget = target_.lock();
+    return lockedTarget && lockedTarget->isAlive();
 }
 
 

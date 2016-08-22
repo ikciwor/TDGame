@@ -26,7 +26,7 @@ bool CreepDotDisplayComponent::isHit(sf::Vector2f point) const
 	const auto diff = point - walkComponent_.getPosition();
 	return diff.x * diff.x + diff.y * diff.y <= radius_ * radius_;
 }
-void CreepDotDisplayComponent::update(sf::Time dt)
+bool CreepDotDisplayComponent::update(sf::Time dt)
 {
     printf("lol\n");
 }
@@ -88,7 +88,7 @@ bool CreepTextureDisplayComponent::isHit(sf::Vector2f point) const
     const auto diff = point - walkComponent_.getPosition();
     return diff.x * diff.x + diff.y * diff.y <= radius_ * radius_;
 }
-void CreepTextureDisplayComponent::update(sf::Time dt)
+bool CreepTextureDisplayComponent::update(sf::Time dt)
 {
     auto onFinish=[this]()
     {

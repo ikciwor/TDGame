@@ -35,3 +35,11 @@ void TowerSimpleDisplayComponent::render(sf::RenderTarget & target)
 	target.draw(baseShape_);
 	target.draw(barrelShape_, transform);
 }
+
+void BombardDisplayComponent::render(sf::RenderTarget &target) {
+	target.draw(krztaut_);
+}
+
+BombardDisplayComponent::BombardDisplayComponent(TowerTargetingComponent &targeting, sf::Vector2f position) {
+	//TODO: Ogarnąć coś tu
+}

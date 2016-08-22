@@ -19,7 +19,7 @@ void TowerLinearShootingComponent::update(sf::Time dt, BulletFactory & bulletFac
      break;
    }
    case TowerLinearShootingComponent::NEUTRAL: {
-     bulletName= "GenericBullet";
+     bulletName= "Bomb";
      break;
    }
    // case TowerLinearShootingComponent//  {

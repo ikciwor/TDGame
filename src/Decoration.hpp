@@ -11,7 +11,7 @@
 class Decoration : public Renderable
 {
 public:
-	virtual void update(sf::Time dt) = 0;
+	virtual bool update(sf::Time dt) = 0;
 };
 
 class CreepSourceDecoration : public Decoration
@@ -20,7 +20,7 @@ class CreepSourceDecoration : public Decoration
 
 public:
 	CreepSourceDecoration(sf::Vector2f position);
-	virtual void update(sf::Time dt) override;
+	virtual bool update(sf::Time dt) override;
 	virtual void render(sf::RenderTarget & target) override;
 };
 
@@ -31,7 +31,17 @@ class GoalDecoration : public Decoration
 
 public:
 	GoalDecoration(sf::Vector2f position);
-	virtual void update(sf::Time dt) override;
+	virtual bool update(sf::Time dt) override;
+	virtual void render(sf::RenderTarget & target) override;
+};
+
+class Explosion : public Decoration {
+	sf::CircleShape inside,outside;
+    float size = 0;
+
+public:
+	Explosion(sf::Vector2f position);
+	virtual bool update(sf::Time dt) override;
 	virtual void render(sf::RenderTarget & target) override;
 };
 

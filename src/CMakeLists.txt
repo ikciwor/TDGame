@@ -54,7 +54,7 @@ set(HEADERS
 	Tower/TowerFactory.hpp
 	Tower/TowerShootingComponent.hpp
 	Tower/TowerTargetingComponent.hpp
-)
+		DecorationFactory.cpp DecorationFactory.h Bullet/BombMovementComponent.cpp Bullet/BombMovementComponent.h)
 
 set(LIBS
 	${SFML_LIBRARIES}

@@ -47,6 +47,8 @@ std::shared_ptr<Creep> CreepFactory::createCreep(
             bool czy=1;
             FILE *f;
             f=fopen(("../../data/"+typeName+".txt").data(),"r");
+            if (!f)
+                throw std::runtime_error("Failed to load resource for turret type " + typeName);
             //char pom;
             //fseek(f,0,SEEK_END);
             char nazwa[256];
