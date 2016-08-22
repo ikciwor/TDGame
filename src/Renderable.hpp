@@ -13,6 +13,7 @@ class Renderable
 public:
 	virtual ~Renderable() {}
 	virtual void render(sf::RenderTarget & target) = 0;
+    virtual void update(sf::Time ){};
 	virtual bool isHit(sf::Vector2f /*point*/) const
 	{
 		return false;
@@ -40,6 +41,12 @@ public:
 		for (auto & child : children_)
 			child->render(target);
 	}
+
+    virtual void update(sf::Time dt) override
+    {
+        for (auto & child : children_)
+            child->update(dt);
+    }
 
 	virtual bool isHit(sf::Vector2f point) const override
 	{

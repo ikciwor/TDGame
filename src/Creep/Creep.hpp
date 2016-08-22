@@ -54,6 +54,7 @@ public:
 
 	inline void update(sf::Time dt, NavigationProvider<sf::Vector2i> & navigation)
 	{
+        displayComponent_->update(dt);
 		walkComponent_->update(dt, navigation);
     updateDebuff();
 	}
