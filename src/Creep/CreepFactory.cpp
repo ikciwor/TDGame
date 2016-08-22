@@ -22,7 +22,7 @@ std::shared_ptr<Creep> CreepFactory::createCreep(
 		compositeDisplay->addChild(std::move(dotDisplay));
 		compositeDisplay->addChild(std::move(lifeDisplay));
 
-		auto ret = std::make_shared<Creep>(life, bounty, std::move(walk), std::move(compositeDisplay));
+		auto ret = std::make_shared<Creep>(1000, bounty, std::move(walk), std::move(compositeDisplay));
 		lifeDisplayDirect->setOwner(ret.get());
 		return ret;
 	}

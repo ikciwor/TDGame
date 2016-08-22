@@ -32,7 +32,7 @@ void BulletTimedMovementComponent::update(sf::Time dt)
 	timeToHit_ = nextTime;
 
 	if (nextTime == 0.f) {
-		lockedTarget->applyDebuff(CreepDebuffComponent::SLOW);
+		lockedTarget->applyDebuff(debuffComponent_);
 		lockedTarget->inflictDamage(damage_);
 		target_.reset();
 	}

@@ -3,6 +3,8 @@
 #define TDF_CREEP_DEBUFF_COMPONENT_HPP
 
 #include "CreepWalkComponent.hpp"
+#include "Thor/Time.hpp"
+#include "SFML/System.hpp"
 
 class CreepDebuffComponent{
 public:
@@ -11,12 +13,14 @@ public:
     BURN,
     FREEZE
   };
-  CreepDebuffComponent(int type);
-  void update(CreepWalkComponent &walkComp);
+  CreepDebuffComponent(int type, float timeToLive);
+  void update();
   int getType();
+  bool isFinished;
 private:
+  int counter;
   int type_;
-  float timeToLive_;
+  int timeToLive_;
 };
 
 

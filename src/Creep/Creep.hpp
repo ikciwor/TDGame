@@ -4,6 +4,7 @@
 #define TDF_CREEP_HPP
 
 #include <memory>
+#include <list>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include "../Selectable.hpp"
@@ -19,7 +20,7 @@
 class Creep : public Selectable, public Renderable
 {
 private:
-  std::vector<CreepDebuffComponent> debuffComponents_;
+  std::list<CreepDebuffComponent> debuffComponents_;
 	std::unique_ptr<CreepWalkComponent> walkComponent_;
 	std::unique_ptr<CreepDisplayComponent> displayComponent_;
 	int32_t life_, maxLife_;
@@ -34,18 +35,27 @@ public:
     debuffComponents_.push_back(debuffcomp);
   }
 
+  inline void updateDebuff(){
+
+    walkComponent_->updateSpeed(1.f);
+    for(auto &deb : debuffComponents_){
+        deb.update();
+        int d = deb.getType();
+        if(d == CreepDebuffComponent::SLOW){
+          walkComponent_->updateSpeed(0.2f);
+        }
+      }
+    debuffComponents_.remove_if([](const CreepDebuffComponent &kups){
+                                  std::cerr << kups.isFinished << " ";
+                                  return kups.isFinished;
+                                }
+                                );
+  }
 
 	inline void update(sf::Time dt, NavigationProvider<sf::Vector2i> & navigation)
 	{
-    int d;
-    for(auto debuff : debuffComponents_){
-      d = debuff.getType();
-      if(d == CreepDebuffComponent::SLOW){
-        std::cerr << "slowed";
-        walkComponent_->updateSpeed(0.2f);
-      }
-    }
 		walkComponent_->update(dt, navigation);
+    updateDebuff();
 	}
 
 	inline virtual void render(sf::RenderTarget & target) override

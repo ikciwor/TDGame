@@ -20,9 +20,14 @@ class TowerLinearShootingComponent final : public TowerShootingComponent
 {
 private:
 	float charge_, maxCharge_;
+  int type_;
 
 public:
-	TowerLinearShootingComponent(float shotsPerSecond);
+  enum BULLET_TYPE{
+    NEUTRAL,
+    SLOW
+  };
+	TowerLinearShootingComponent(float shotsPerSecond,int type);
 	virtual void update(sf::Time dt, BulletFactory & bulletFactory) override;
 };
 

@@ -1,28 +1,23 @@
 #include "CreepDebuffComponent.hpp"
+#include <iostream>
 
 
 
-CreepDebuffComponent::CreepDebuffComponent(int type) {
+CreepDebuffComponent::CreepDebuffComponent(int type, float timeToLive) {
+  timeToLive_ = (int)timeToLive*60;
   type_ = type;
+  isFinished = false;
+  counter = 0;
 }
 
 int CreepDebuffComponent::getType(){
   return type_;
 }
 
-void CreepDebuffComponent::update(CreepWalkComponent &walkComp){
-  switch (type_) {
-  case CreepDebuffComponent::SLOW: {
-    walkComp.updateSpeed(0);
-    break;
-  }
-  case CreepDebuffComponent::BURN:{
-    break;
-  }
-  case CreepDebuffComponent::FREEZE: {
-    break;
-  }
-default:
-    break;
+void CreepDebuffComponent::update(){
+  std::cerr << "c " << counter << "\n";
+  counter++;
+  if(counter >= timeToLive_){
+    isFinished = true;
   }
 }

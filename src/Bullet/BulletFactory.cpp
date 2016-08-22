@@ -11,7 +11,7 @@ std::shared_ptr<Bullet> BulletFactory::innerCreateBullet(
 	const std::string & bulletName) const
 {
 	if (bulletName == "GenericBullet") {
-auto debuff = std::make_unique<CreepDebuffComponent>(0);
+    auto debuff = std::make_unique<CreepDebuffComponent>(0, 2.f);
 		auto movement = std::make_unique<BulletTimedMovementComponent>(
 			1.f, target_, 20, position_, *debuff);
 		auto display = std::make_unique<BulletSimpleDisplayComponent>(0.0625f, *movement.get());

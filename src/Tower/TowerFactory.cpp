@@ -18,7 +18,7 @@ static std::vector<std::pair<std::string, towerTypeInfo_t>> typeInfos = []()
 		3.f, // Range (in game units)
 		[](sf::Vector2f position) -> std::shared_ptr<Tower> {
 			auto targeting = std::make_unique<TowerClosestTargetingComponent>(position);
-			auto shooting = std::make_unique<TowerLinearShootingComponent>(1.f);
+			auto shooting = std::make_unique<TowerLinearShootingComponent>(1.f, TowerLinearShootingComponent::NEUTRAL);
 			auto display = std::make_unique<TowerSimpleDisplayComponent>(*targeting.get(), position);
 			return std::make_shared<Tower>(
 				position,
